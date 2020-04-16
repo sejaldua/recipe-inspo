@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Submit a Recipe</title>
+    <meta charset="utf-8"/>
+    <link href="style.css" rel="stylesheet">
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script> -->
+</head>`
+<style> 
+    body {
+
+    }
+    #button {
+        position: static;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #desc {
+    height: 30vh;
+    width: 100%;
+    display: block;
+    padding-left:3vw;
+    padding-right:3vw;
+    padding-top:2vh;
+    padding-bottom:2vh;
+    border: 1px solid #ccc;
+    font-family: "Helvetica", sans-serif; 
+    font-size: 1em;
+}
+
+#desc:focus {
+    outline: none;
+    border: 1px solid rgb(164, 210, 240);
+}
+</style>
+<body>
+<!-- String-Parsing Code -->
+<script language="javascript">
+
+    /* Function get_recipe
+     * Parameters: none
+     * Operations: Gets the recipe from the user's input
+     */
+    function get_recipe()
+    {
+        var recipe_name = document.getElementsByName("name")[0].value;
+        var description = document.getElementsByName("description")[0].value;
+        var ingredients = document.getElementsByName("ingredients")[0].value;
+        /* Create JSON Object */
+        var recipe_JSON = create_JSON(recipe_name, description, ingredients);
+
+        /* reset the values to nothin */
+        document.getElementsByName("name")[0].value = "";
+        document.getElementsByName("description")[0].value = "";
+        document.getElementsByName("ingredients")[0].value = "";
+    }
+    /* Function create_JSON
+     * Parameters: recipe name, description and ingredients needed
+     * Operations: Creates a JSON Object of the recipe
+     */
+     function create_JSON(recipe_name, description, ingredients)
+     {
+        var ingredients_array = parse_ingredients(ingredients);
+        /* now create JSON object with the recipe information */
+        var recipe_text = '{ "name":"' + recipe_name + '", "description":"' + description + '", "ingredients":[ ';
+        for (let i = 0; i < ingredients_array.length; i++) {
+            recipe_text += '"';
+            recipe_text += ingredients_array[i];
+            recipe_text += '"';
+            if (i != ingredients_array.length - 1)
+                recipe_text += ', ';
+        }
+        recipe_text += ' ] }';
+        alert(recipe_text);
+        var recipe_JSON = JSON.parse(recipe_text);
+        return recipe_JSON;
+     }
+
+     /* function parse_ingredients 
+      * Parameters: a list of ingredients 
+      * Operations: parses the list of ingredients 
+      * Returns: An array of all ingredients
+      */
+      function parse_ingredients(ingredients)
+      {
+        /* first remove leading and trailing whitespace */
+        ingredients = ingredients.trim();
+        /* split the string via each comma */
+        var ingredients_array = ingredients.split(",");
+        /* remove leading and trailing whitespace for each ingredient */
+        for (let i = 0; i < ingredients_array.length; i++) {
+            ingredients_array[i] = ingredients_array[i].trim();
+        }
+        return ingredients_array;
+
+      }
+</script>
+
+
+    <h1 class="title">Submit a Recipe! </h1>
+    <div class="wrapper">
+        <form id="query-form">
+            <input id="query" name="name" type="text" placeholder="Recipe Name" required>
+        </form>
+        <br>
+          <form id="query-form">
+
+            <input id="query" name="ingredients" type="text" placeholder="Enter ingredients, separated by commas, e.g:   2 tomatoes, 3 carrots, 1 onion" required>
+        </form>
+                
+        <br>
+          <form id="query-form">
+            <textarea rows="5" cols="60" name="description" id="desc" placeholder="Enter the instructions for your recipe"></textarea>
+        </form>
+        <br>
+        <button id="button" onclick="get_recipe()">Submit Recipe</button>
+    </div>
+
+</body>
+</html>
