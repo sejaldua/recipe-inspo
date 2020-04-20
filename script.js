@@ -75,11 +75,12 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("4: Request sent");
     }
 
-    function createModal(i, meal_name) {
-        console.log(i, meal_name);
+    function createModal(num, meal_name) {
+        num = num - 1
+        console.log(num, meal_name);
         var divstr = "";
-        divstr += "<div class='modal' id='modal"+i+"'>";
-        divstr += "<div class='modal-content' id='modal"+i+"content'>";
+        divstr += "<div class='modal' id='modal"+num+"'>";
+        divstr += "<div class='modal-content' id='modal"+num+"content'>";
         divstr += "<span class='close'>&times;</span>";
         divstr + "<p>"+meal_name+"</p>";
         divstr += "</div>";
@@ -124,7 +125,6 @@ function requestRecipe(q) {
 
         if (request.readyState == 4 && request.status == 200) {
             var data = JSON.parse(request.responseText).meals[0];
-            console.log(data.strInstructions);
             var s = data.strInstructions;
             console.log(data.strYoutube);
             s += "<br><a href='" + data.strYoutube + "'></a>";             
@@ -161,30 +161,35 @@ function listenClick(meals, ids) {
     console.log("testing");
     var modalBtns = [...document.querySelectorAll(".button")];
     modalBtns.forEach(function(btn){
-        console.log(btn);
         btn.addEventListener("click", function() {
             console.log("clicked");
             var modal = btn.getAttribute('data-modal');
             document.getElementById(modal).style.display = "block";
             document.getElementById(modal+'content').innerHTML = "<span class='close'>&times;</span><p>Recipe: "+meals[modal[5]]+"</p><div id='recipe'></div>";
+            var closeBtns = [...document.querySelectorAll(".close")];
+            closeBtns.forEach(function(btn){
+                console.log(btn);
+                btn.addEventListener("click", function() {
+                    console.log("CLOSE");
+                    var modal = btn.closest('.modal');
+                    modal.style.display = "none";
+                })
+            });
             requestRecipe(ids[modal[5]]);
         })
     });
     
-    var closeBtns = [...document.querySelectorAll(".close")];
-    closeBtns.forEach(function(btn){
-        btn.addEventListener("click", function() {
-            var modal = btn.closest('.modal');
-            modal.style.display = "none";
-        })
-    });
-    console.log("here");
+
+    
+    /*console.log("here");
     var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
+        console.log("close!");
          modal.style.display = "none";
     }
+    */
     
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
