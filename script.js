@@ -42,10 +42,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         // alternating color scheme
                         if (i % 2 == 0)
-                            s += "<th class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
+                            s += "<th class='button' data-modal='modal" + i + "'><u>" + data[x].strMeal + "</u></th>";
                         else
-                            s += "<th style='background-color:#27252B' class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
-                        s += "<th><img src='" + data[x].strMealThumb + "' width='100' height='100'></img></th>";
+                            s += "<th style='background-color:#27252B' class='button' data-modal='modal" + i + "'><u>" + data[x].strMeal + "</u></th>";
+                        s += "<th><img class='button' data-modal='modal" + i + "' src='" + data[x].strMealThumb + "' width='100' height='100'></img></th>";
                         if (i == entries - 1)
                             s += "</tr>";
                         i += 1;
@@ -128,12 +128,19 @@ function requestRecipe(q) {
             var s = data.strInstructions;
             console.log(data.strYoutube);
             s += "<br><a href='" + data.strYoutube + "'></a>";             
-            s += "<br><table id='ingredients' style='margin: auto'>";
+            s += "<br><table class='ingredients' style='margin: auto'>";
             i = 1;
+            s += "<tr style='font-family: Helvetica, sans-serif;'>";
+            s += "<th><b>INGREDIENTS</b></th>";
+            s += "<th><b>QUANTITIES</b></th>";
+            s += "</tr>";
             while (data['strIngredient' + i] != "" && data['strIngredient' + i] != null) {
-                s += "<tr>";
-                s += "<th>" + data['strIngredient' + i] + "<th>";
-                s += "<th>" + data['strMeasure' + i] + "<th>";
+                if (i % 2 == 0)
+                    s += "<tr class='even'>";
+                else
+                    s += "<tr class='odd'>";
+                s += "<th>" + data['strIngredient' + i] + "</th>";
+                s += "<th>" + data['strMeasure' + i] + "</th>";
                 s += "</tr>";
                 i += 1;
             }
