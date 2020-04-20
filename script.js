@@ -27,10 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 // display query results
                 else 
                 {
+                    var meals = new Array();
+                    var ids = new Array();
                     entries = data.length;
                     i = 0;
                     s = "<table class='table' id='meals'><tr>";
                     for (x in data) {
+                        meals.push(data[x].strMeal);
+                        ids.push(data[x].idMeal);
                         // managing table columns
                         if (i != 0 && i % 3 == 0) {
                             s += "</tr>";
@@ -51,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     console.log('ID:', data);                    
                     document.getElementById("results").innerHTML = s;
-                    listenClick();
+                    listenClick(meals, ids);
                 }
             } 
             else if (request.readyState == 4 && request.status != 200) {
@@ -106,7 +110,54 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function listenClick() {
+function requestRecipe(q) {
+    // Step 1: create new instance of request object
+    let request = new XMLHttpRequest;
+    console.log("1: request object created");
+    console.log(q);
+    // Step 2: Set the URL for the AJAX request to be the JSON file 
+    request.open('GET', 'https://www.themealdb.com/api/json/v1/1/lookup.php?i='+q, true);
+    console.log("2: opened request file");
+    // Step 3: set up event handler / callback
+    request.onload = function() {
+        console.log("3: readystatechange event fired");
+
+        if (request.readyState == 4 && request.status == 200) {
+            var data = JSON.parse(request.responseText).meals[0];
+            console.log(data.strInstructions);
+            var s = data.strInstructions;
+            console.log(data.strYoutube);
+            s += "<br><a href='" + data.strYoutube + "'></a>";             
+            s += "<br><table id='ingredients' style='margin: auto'>";
+            i = 1;
+            while (data['strIngredient' + i] != "" && data['strIngredient' + i] != null) {
+                s += "<tr>";
+                s += "<th>" + data['strIngredient' + i] + "<th>";
+                s += "<th>" + data['strMeasure' + i] + "<th>";
+                s += "</tr>";
+                i += 1;
+            }
+            s += "</table>"
+            document.getElementById("recipe").innerHTML = s;
+        } 
+        else if (request.readyState == 4 && request.status != 200) {
+            document.getElementById("results").innerHTML = "Uh Oh. Something went wrong."
+        }
+        else {
+            console.log('Reached API but threw error');
+        }
+    }
+    
+    request.onerror = function() {
+        console.log("Connection error");
+    };
+
+    // Step 4: fire off HTTP request
+    request.send();
+    console.log("4: Request sent");
+}
+
+function listenClick(meals, ids) {
     console.log("testing");
     var modalBtns = [...document.querySelectorAll(".button")];
     modalBtns.forEach(function(btn){
@@ -115,7 +166,8 @@ function listenClick() {
             console.log("clicked");
             var modal = btn.getAttribute('data-modal');
             document.getElementById(modal).style.display = "block";
-            document.getElementById(modal+'content').innerHTML = "<span class='close'>&times;</span><p>"+modal+"</p>"
+            document.getElementById(modal+'content').innerHTML = "<span class='close'>&times;</span><p>Recipe: "+meals[modal[5]]+"</p><div id='recipe'></div>";
+            requestRecipe(ids[modal[5]]);
         })
     });
     
