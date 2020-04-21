@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         // alternating color scheme
                         if (i % 2 == 0)
-                            s += "<th class='button' data-modal='modal" + i + "'><u>" + data[x].strMeal + "</u></th>";
+                            s += "<th class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
                         else
-                            s += "<th style='background-color:#27252B' class='button' data-modal='modal" + i + "'><u>" + data[x].strMeal + "</u></th>";
+                            s += "<th style='background-color:#27252B' class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
                         s += "<th><img class='button' data-modal='modal" + i + "' src='" + data[x].strMealThumb + "' width='100' height='100'></img></th>";
                         if (i == entries - 1)
                             s += "</tr>";
@@ -144,8 +144,11 @@ function requestRecipe(q) {
                 s += "</tr>";
                 i += 1;
             }
-            s += "</table>"
+            s += "</table>";
+            //console.log(s);
+            document.getElementById("recipe").innerHTML = "";
             document.getElementById("recipe").innerHTML = s;
+            console.log(document.getElementById("recipe").innerHTML);
         } 
         else if (request.readyState == 4 && request.status != 200) {
             document.getElementById("results").innerHTML = "Uh Oh. Something went wrong."
@@ -163,6 +166,7 @@ function requestRecipe(q) {
     request.send();
     console.log("4: Request sent");
 }
+
 
 function listenClick(meals, ids) {
     console.log("testing");
