@@ -43,7 +43,8 @@ app.post('/myaction', function(req, res) {
           
           //db.close();
 	}); 
-	res.redirect('/index');
+	
+	res.send({redirect: '/index'});
 });
 
 // makes sure the server is setup correctly
