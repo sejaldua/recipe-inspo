@@ -7,9 +7,7 @@ const url = "mongodb+srv://team_caffein8ed:CKesryAxhYkVu4Hb@cluster0-lqoff.mongo
 
 const express = require('express');
 const app = new express();
-
-// port refers to heroku server
-// var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 
 var bodyParser = require('body-parser');
 
@@ -49,9 +47,9 @@ app.post('/myaction', function(req, res) {
 });
 
 // makes sure the server is setup correctly
-app.listen(8080, function () {
-    console.log(`Example app listening on port !`);
-});
+app.listen(port, function () {
+    console.log(`App listening on heroku !`);
+   });
 
 
 
