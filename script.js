@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function generate() {
-        document.getElementById("blooock").innerHTML = "";
         q = document.getElementById("query").value;
         setTimeout(clear, 1000);
         console.log("before");
