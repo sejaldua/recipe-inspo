@@ -22,7 +22,7 @@ app.post('/myaction', function(req, res) {
  // body-parser automatically parses the json so its easy to grab form elements
     var doc = {
     name: req.body.name,
-    ingredients: req.body.ingredients,
+    ingredients: req.body.ingredients.split(','),
     description: req.body.description,
     }
     console.log(doc);
@@ -44,7 +44,7 @@ app.post('/myaction', function(req, res) {
           //db.close();
 	}); 
 	
-	res.redirect('http://google.com');
+	res.redirect('sejaldua.com/recipe-inspo/thank-you.html');
 });
 
 // makes sure the server is setup correctly
