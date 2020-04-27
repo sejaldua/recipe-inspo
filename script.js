@@ -27,13 +27,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 // display query results
                 else 
                 {
-                    var meals = new Array();
+                    var allMeals = new Array();
                     var ids = new Array();
                     entries = data.length;
                     i = 0;
                     s = "<table class='table' id='meals'><tr>";
                     for (x in data) {
-                        meals.push(data[x].strMeal);
+                        allMeals.push(data[x].strMeal);
                         ids.push(data[x].idMeal);
                         // managing table columns
                         if (i != 0 && i % 3 == 0) {
@@ -42,20 +42,17 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         // alternating color scheme
                         if (i % 2 == 0)
-                            s += "<th style='background-color: #F6E8EA' class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
+                            s += "<th style='background-color: #F6E8EA' class='button' id=" + i + ">" + data[x].strMeal + "</th>";
                         else
-                            s += "<th style='background-color:#B6DCF6' class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
-                        s += "<th><img class='button' data-modal='modal" + i + "' src='" + data[x].strMealThumb + "' width='100' height='100'></img></th>";
+                            s += "<th style='background-color:#B6DCF6' class='button' id=" + i + ">" + data[x].strMeal + "</th>";
+                        s += "<th><img class='button' id=" + i + " src='" + data[x].strMealThumb + "' width='100' height='100'></img></th>";
                         if (i == entries - 1)
                             s += "</tr>";
                         i += 1;
-                        document.getElementById("blooock").innerHTML += createModal(i, data[x].strMeal);
                     }
-                    s += "</table";
-
-                    console.log('ID:', data);                    
+                    s += "</table";             
                     document.getElementById("results").innerHTML = s;
-                    listenClick(meals, ids);
+                    listenClick(allMeals, ids);
                 }
             } 
             else if (request.readyState == 4 && request.status != 200) {
@@ -76,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function createModal(num, meal_name) {
-        num = num - 1
         console.log(num, meal_name);
         var divstr = "";
         divstr += "<div class='modal' id='modal"+num+"'>";
@@ -91,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function generate() {
         document.getElementById("blooock").innerHTML = "";
         q = document.getElementById("query").value;
-        console.log('Query: ',document.getElementById("query").value);
         setTimeout(clear, 1000);
         console.log("before");
         requestData(q);
@@ -148,7 +143,6 @@ function requestRecipe(q) {
             //console.log(s);
             document.getElementById("recipe").innerHTML = "";
             document.getElementById("recipe").innerHTML = s;
-            console.log(document.getElementById("recipe").innerHTML);
         } 
         else if (request.readyState == 4 && request.status != 200) {
             document.getElementById("results").innerHTML = "Uh Oh. Something went wrong."
@@ -169,38 +163,22 @@ function requestRecipe(q) {
 
 
 function listenClick(meals, ids) {
-    console.log("testing");
-    var modalBtns = [...document.querySelectorAll(".button")];
-    modalBtns.forEach(function(btn){
-        btn.addEventListener("click", function() {
-            console.log("clicked");
-            var modal = btn.getAttribute('data-modal');
-            document.getElementById(modal).style.display = "block";
-            document.getElementById(modal+'content').innerHTML = "<span class='close'>&times;</span><p>Recipe: "+meals[modal[5]]+"</p><div id='recipe'></div>";
-            var closeBtns = [...document.querySelectorAll(".close")];
-            closeBtns.forEach(function(btn){
-                console.log(btn);
-                btn.addEventListener("click", function() {
-                    console.log("CLOSE");
-                    var modal = btn.closest('.modal');
-                    modal.style.display = "none";
-                })
+    $(document).click(function(event) {
+        console.log(event.target.id);
+        if (parseInt(event.target.id) || event.target.id == 0) {
+            var num = event.target.id;
+            var modal = document.getElementById('modal');
+            modal.style.display = "block";
+            document.getElementById('modal-content').innerHTML = "<span class='close' id='close'>&times;</span><p>"+meals[num]+"</p><div id='recipe'></div>";
+            var closeBtn = document.getElementById('close');
+            closeBtn.addEventListener("click", function() {
+                console.log("CLOSE");
+                document.getElementById('modal').style.display = "none";
             });
-            requestRecipe(ids[modal[5]]);
-        })
+            console.log(ids[num]);
+            requestRecipe(ids[num]);
+        }
     });
-    
-
-    
-    /*console.log("here");
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        console.log("close!");
-         modal.style.display = "none";
-    }
-    */
     
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
