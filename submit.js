@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 
 // update to correct mongo database
-const url = "mongodb+srv://Henry69Caron420:aMw8pQnoEqlanXEk@cluster0-h3reo.mongodb.net/test?retryWrites=true&w=majority";
+const url = "mongodb+srv://team_caffein8ed:CKesryAxhYkVu4Hb@cluster0-lqoff.mongodb.net/test?retryWrites=true&w=majority";
 
 // npm install express and body-parser
 
@@ -28,25 +28,27 @@ app.post('/myaction', function(req, res) {
     description: req.body.description,
     }
     console.log(doc);
-    res.send(doc);
-    // MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
-    //     if(err) { console.log ("Error: " + err); return; }
+    
+    MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+        if(err) { console.log ("Error: " + err); return; }
         
-    //      // need to update the database name 
-    //     var dbo = db.db("??");
-    //     var collection = dbo.collection('??');
+         // need to update the database name 
+        var dbo = db.db("Comp20Final");
+        var collection = dbo.collection('recipes');
         
-    //     // insert document into database
-    //     collection.insertOne(doc, function(err, res) {
-    //         if (err) { console.log ("Error: " + err); return; }
-    //         console.log("new document inserted");
-    //     });
-    //     console.log("Success!");
+        // insert document into database
+        collection.insertOne(doc, function(err, res) {
+            if (err) { console.log ("Error: " + err); return; }
+            console.log("new document inserted");
+        });
+        console.log("Success!");
           
-    //       //db.close();
-	// }); 
+          //db.close();
+	}); 
+	res.send(doc);
 });
 
+// makes sure the server is setup correctly
 app.listen(8080, function () {
     console.log(`Example app listening on port !`);
 });
