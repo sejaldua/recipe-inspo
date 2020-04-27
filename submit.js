@@ -44,7 +44,7 @@ app.post('/myaction', function(req, res) {
           //db.close();
 	}); 
 	
-	res.send({redirect: '/index'});
+	res.redirect('http://google.com');
 });
 
 // makes sure the server is setup correctly
