@@ -43,7 +43,7 @@ app.post('/myaction', function(req, res) {
           
           //db.close();
 	}); 
-	res.send(doc);
+	res.redirect('/index');
 });
 
 // makes sure the server is setup correctly
