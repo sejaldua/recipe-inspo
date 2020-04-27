@@ -48,6 +48,7 @@ app.post('/myaction', function(req, res) {
 	res.send(doc);
 });
 
+// makes sure the server is setup correctly
 app.listen(8080, function () {
     console.log(`Example app listening on port !`);
 });
