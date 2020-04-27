@@ -184,8 +184,8 @@ ul {
  }
  li {
  	list-style-type: none;
- 	padding-left: 2vw;
- 	padding-right: 2vw;
+ 	padding-left: 1vw;
+ 	padding-right: 1vw;
  	font-size: 4vh;
  }
  li:hover {
