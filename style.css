@@ -5,15 +5,15 @@
 html {
     box-sizing: border-box;
     outline: none;
-    background: rgb(14, 13, 13);
-    color: #fff;
+    background: #ffffff;
+    color: black;
     font-family: "Rubik", sans-serif;
 }
 
 body {
     width: 100%;
-    margin: auto;
-    font-size: 14px;
+/*     margin: auto;
+    font-size: 14px; */
 }
 
 .title {
@@ -52,8 +52,8 @@ input[type="text"]
 
 div {
     position: relative;
-    max-width: 700px;
-    margin: auto;
+/*     max-width: 700px;
+    margin: auto; */
     box-sizing: border-box;
     overflow:hidden;
 }
@@ -61,6 +61,8 @@ div {
 .wrapper {
     text-align: center;
     min-width: 350px;
+max-width: 700px;
+    margin: auto;
 }
 
 .writeup {
