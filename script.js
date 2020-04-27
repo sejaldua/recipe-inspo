@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         // alternating color scheme
                         if (i % 2 == 0)
-                            s += "<th style='background-color: #9BBACB' class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
+                            s += "<th style='background-color: #F6E8EA' class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
                         else
-                            s += "<th style='background-color:#F0DECE' class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
+                            s += "<th style='background-color:#C2FFFF' class='button' data-modal='modal" + i + "'>" + data[x].strMeal + "</th>";
                         s += "<th><img class='button' data-modal='modal" + i + "' src='" + data[x].strMealThumb + "' width='100' height='100'></img></th>";
                         if (i == entries - 1)
                             s += "</tr>";
