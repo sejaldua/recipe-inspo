@@ -139,6 +139,7 @@ span {
     width: 80%;
     height: 80%;
     color: black;
+    overflow: auto;
   }
 
   .odd {
