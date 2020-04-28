@@ -61,7 +61,7 @@ div {
 .wrapper {
     text-align: center;
     min-width: 350px;
-max-width: 700px;
+    max-width: 700px;
     margin: auto;
 }
 
@@ -130,6 +130,7 @@ span {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */ /* Fallback color */
     background-color: rgba(34, 33, 33, 0.664); /* Black w/ opacity */
+    cursor: pointer;
   }
   
   /* Modal Content */
@@ -142,6 +143,10 @@ span {
     height: 80%;
     color: black;
     overflow: auto;
+  }
+
+  .button {
+    cursor: pointer;
   }
 
   .odd {

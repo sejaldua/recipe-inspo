@@ -105,6 +105,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function getId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+
+    return (match && match[2].length === 11)
+      ? match[2]
+      : null;
+}
+    
+const videoId = getId('http://www.youtube.com/watch?v=zbYf5_S7oJo');
+const iframeMarkup = '<iframe width="560" height="315" src="//www.youtube.com/embed/' 
+    + videoId + '" frameborder="0" allowfullscreen></iframe>';
+
 function requestRecipe(q) {
     // Step 1: create new instance of request object
     let request = new XMLHttpRequest;
@@ -120,8 +133,7 @@ function requestRecipe(q) {
         if (request.readyState == 4 && request.status == 200) {
             var data = JSON.parse(request.responseText).meals[0];
             var s = data.strInstructions;
-            console.log(data.strYoutube);
-            s += "<br><a href='" + data.strYoutube + "'></a>";             
+            console.log(data.strYoutube);          
             s += "<br><table class='ingredients' style='margin: auto'>";
             i = 1;
             s += "<tr style='font-family: Helvetica, sans-serif;'>";
@@ -139,6 +151,7 @@ function requestRecipe(q) {
                 i += 1;
             }
             s += "</table>";
+            s += "<br><br><iframe width='560' height='315' src='//www.youtube.com/embed/"+ getId(data.strYoutube) + "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe><br>";   
             //console.log(s);
             document.getElementById("recipe").innerHTML = "";
             document.getElementById("recipe").innerHTML = s;
