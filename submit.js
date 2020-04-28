@@ -44,7 +44,7 @@ app.post('/myaction', function(req, res) {
           //db.close();
 	}); 
 	
-	res.redirect('sejaldua.com/recipe-inspo/thank-you.html');
+	res.redirect('./thank-you.html');
 });
 
 // makes sure the server is setup correctly
