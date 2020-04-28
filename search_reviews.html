@@ -1,0 +1,40 @@
+  <!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>See Reviews</title>
+    <meta charset="utf-8"/>
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body id="body">
+	<nav>
+		<ul>
+			<div class="nav-container">
+				<div class="floatleft">
+					<li><a href="index.html">Explore Recipes</a></li>
+				</div>
+				<div class="floatright">
+					<li><a href="submit_recipe.html">Submit a Recipe</a></li>
+                    <li><a href="search_reviews.html">Reviews</a></li>
+					<li><a href="aboutus.html">About Us</a></li>
+				</div>
+			</div>
+		</ul>
+	</nav>
+	<br><br><br>
+    <h1 class="title">See Recipe Reviews</h1>
+	<br>
+    <div class="wrapper">
+        <form id="query-form"  action="https://immense-shelf-54929.herokuapp.com/myaction"> <!-- action goes to heroku app -->
+            <input id="query" name="query" type="text" placeholder="Enter a recipe name (Case Sensitive)" required>
+        </form>
+        <button id="button">See All Reviews</button>
+     <div class="review-list"></div>
+    </div>
+
+
+</body>
+</html>
