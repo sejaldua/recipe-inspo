@@ -62,7 +62,7 @@ app.post('/submit', function(req, res) {
 
 
 app.post('/get', function(req, res) {
-    console.log(req.body);
+    console.log(req);
     var name = req.body;
     console.log("name: " + name);
     
