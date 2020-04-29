@@ -2,11 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // default search query
     var q = "chicken";
     var state = 0;
+    var request;
     requestData(q);
     
     function requestData(q) {
         // Step 1: create new instance of request object
-        let request = new XMLHttpRequest;
+        request = new XMLHttpRequest;
         console.log("1: request object created");
         console.log(q);
         // Step 2: Set the URL for the AJAX request to be the JSON file 
@@ -72,18 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("4: Request sent");
     }
 
-    function createModal(num, meal_name) {
-        console.log(num, meal_name);
-        var divstr = "";
-        divstr += "<div class='modal' id='modal"+num+"'>";
-        divstr += "<div class='modal-content' id='modal"+num+"content'>";
-        divstr += "<span class='close'>&times;</span>";
-        divstr + "<p>"+meal_name+"</p>";
-        divstr += "</div>";
-        divstr += "</div>";
-        return divstr;
-    }
-
     function generate() {
         q = document.getElementById("query").value;
         setTimeout(clear, 1000);
@@ -96,11 +85,11 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('query').value = "";
     }
 
-    document.getElementById("button").addEventListener("click", generate);
+    document.getElementById("submit").addEventListener("click", generate);
     document.addEventListener("keypress", function(e) {
         if (e.keyCode == 13) {
             e.preventDefault();
-            $('#button').trigger("click");
+            $('#submit').trigger("click");
         }
     });
 });
@@ -120,18 +109,19 @@ const iframeMarkup = '<iframe width="560" height="315" src="//www.youtube.com/em
 
 function requestRecipe(q) {
     // Step 1: create new instance of request object
-    let request = new XMLHttpRequest;
+    request = new XMLHttpRequest;
     console.log("1: request object created");
     console.log(q);
     // Step 2: Set the URL for the AJAX request to be the JSON file 
     request.open('GET', 'https://www.themealdb.com/api/json/v1/1/lookup.php?i='+q, true);
     console.log("2: opened request file");
     // Step 3: set up event handler / callback
-    request.onload = function() {
+    request.onreadystatechange = function() {
         console.log("3: readystatechange event fired");
 
         if (request.readyState == 4 && request.status == 200) {
             var data = JSON.parse(request.responseText).meals[0];
+            console.log(data.strMeal);
             var s = data.strInstructions;
             console.log(data.strYoutube);          
             s += "<br><br><table class='ingredients' style='margin: auto'>";
@@ -155,8 +145,10 @@ function requestRecipe(q) {
             //console.log(s);
             document.getElementById("recipe").innerHTML = "";
             document.getElementById("recipe").innerHTML = s;
+            console.log("here");
         } 
         else if (request.readyState == 4 && request.status != 200) {
+            console.log("oops");
             document.getElementById("results").innerHTML = "Uh Oh. Something went wrong."
         }
         else {
@@ -173,11 +165,11 @@ function requestRecipe(q) {
     console.log("4: Request sent");
 }
 
-
 function listenClick(meals, ids) {
     $(document).click(function(event) {
         console.log(event.target.id);
         if (parseInt(event.target.id) || event.target.id == 0) {
+            console.log(meals);
             var num = event.target.id;
             var modal = document.getElementById('modal');
             modal.style.display = "block";
@@ -187,7 +179,7 @@ function listenClick(meals, ids) {
                 console.log("CLOSE");
                 document.getElementById('modal').style.display = "none";
             });
-            console.log(ids[num]);
+            document.getElementById("recipe").innerHTML = "";
             requestRecipe(ids[num]);
         }
     });
@@ -196,6 +188,7 @@ function listenClick(meals, ids) {
     window.onclick = function(event) {
         if (event.target.className != "modal-content" && event.target.className != "button") {
             this.document.getElementById("modal").style.display = "none";
+            this.document.getElementById("modal-content").innerHTML = "";
         }
     }
 }
