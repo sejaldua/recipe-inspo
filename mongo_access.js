@@ -15,6 +15,7 @@ var autocorrect = require('autocorrect')({dictionary: path});
 var bodyParser = require('body-parser');
 
 var cors = require('cors');
+
 app.use(function(req,res,next){
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
