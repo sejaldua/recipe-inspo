@@ -22,7 +22,7 @@ app.use(function(req,res,next){
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers','Content-Type');
     next();
-});
+};
 
 //Note that in version 4 of express, express.bodyParser() was
 //deprecated in favor of a separate 'body-parser' module.
@@ -62,8 +62,8 @@ app.post('/submit', function(req, res) {
 
 
 app.post('/get', function(req, res) {
-    console.log(req.body);
-    var name = req.body;
+    console.log(req.query);
+    var name = req.query;
     console.log("name: " + name);
     
     MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
