@@ -19,6 +19,7 @@
       word-wrap: break-word;
       padding:2vmin;
       width:34vw;
+      display:none;
       
     }
 
@@ -57,7 +58,9 @@
         function print_string(result) 
         {
           result += "?";
-          document.getElementById('review-list').innerHTML = result;
+          var elem = document.getElementById('review-list');
+          elem.style.display = "block";
+          elem.innerHTML = result;
         }
         function print_array(result)
         {
@@ -67,7 +70,10 @@
                  +  "<STRONG> Recipe: </STRONG>" + result[i].dish + "<br>" 
                  +  "<STRONG> Review: </STRONG>" + result[i].review + "<br> <br>";
           }
-          document.getElementById('review-list').innerHTML = text;
+          var elem = document.getElementById('review-list');
+          elem.style.display = "block";
+          elem.innerHTML = text;
+          
         }
      
     </script>
