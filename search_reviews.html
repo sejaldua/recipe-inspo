@@ -17,7 +17,7 @@
               console.log(food);
               $.ajax({
                 url: "https://immense-shelf-54929.herokuapp.com/get",
-                data: {str:food},
+                data: food,
                 method: 'POST'
               }).then(function (response) {
                 // Do stuff with the response, like add it to the page dynamically.
@@ -59,7 +59,7 @@
     <h1 class="title">See Recipe Reviews</h1>
 	<br>
     <div class="wrapper">
-        <form> 
+        <form name = "find">  
             <input id="query" name="query" type="text" placeholder="Enter a recipe name (Case Sensitive)" required>
             <input type = "submit" id="button" value = "See Reviews" /><br>
         </form>
