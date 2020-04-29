@@ -9,14 +9,15 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 
     <script type="text/javascript">
-        $('#myForm').on('submit', function (event) {
+        $('#query_form').on('submit', function (event) {
           event.preventDefault(); // Stop the form from causing a page refresh.
           var data = {
             query: $('#query').val(),
           };
+          console.log(data);
           $.ajax({
             url: "https://immense-shelf-54929.herokuapp.com/get",
-            data: data,
+            data: data.query,
             method: 'POST'
           }).then(function (response) {
             // Do stuff with the response, like add it to the page dynamically.
@@ -48,7 +49,7 @@
     <h1 class="title">See Recipe Reviews</h1>
 	<br>
     <div class="wrapper">
-        <form method = "post" action = "https://immense-shelf-54929.herokuapp.com/get"> <!-- action goes to heroku app -->
+        <form id = "query_form" > 
             <input id="query" name="query" type="text" placeholder="Enter a recipe name (Case Sensitive)" required>
             <input type = "submit" id="button" value = "See Reviews" /><br>
         </form>

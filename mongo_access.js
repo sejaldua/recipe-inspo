@@ -52,7 +52,7 @@ app.post('/submit', function(req, res) {
 
 
 app.post('/get', function(req, res) {
-    name = req.data;
+    var name = req.query.query;
     console.log("name: " + name);
     
     MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
@@ -89,6 +89,7 @@ app.post('/get', function(req, res) {
 app.listen(port, function () {
     console.log(`App listening on heroku !`);
    });
+
 
 
 
