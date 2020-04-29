@@ -74,17 +74,20 @@ app.post('/get', function(req, res) {
         console.log("before find");
         
         var s = coll.find({"dish":name}).stream();
-    
+        var items = {};
         var found = 0;
         s.on("data", function(item) {
             found = 1;
+            items.append(item);
             console.log(item);
-            res.send("Review for " + item.dish + ": " + item.review + " - " + item.user);
+            
         });
            
         s.on("end", function() {
             console.log("end of data");
             db.close();
+            console.log(items);
+            res.send(items);
             // if(found == 0){
             //     result = autocorrect(input);
             //     console.log("No reviews could be found. Did you mean " + result);
