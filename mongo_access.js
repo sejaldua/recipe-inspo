@@ -78,7 +78,7 @@ app.post('/get', function(req, res) {
         var found = 0;
         s.on("data", function(item) {
             found = 1;
-            items.append(item);
+            items.push(item);
             console.log(item);
             
         });
@@ -88,11 +88,11 @@ app.post('/get', function(req, res) {
             db.close();
             console.log(items);
             res.send(items);
-            // if(found == 0){
-            //     result = autocorrect(input);
-            //     console.log("No reviews could be found. Did you mean " + result);
-            //     res.send("No reviews could be found. Did you mean " + result);
-            // }
+            if(found == 0){
+                result = autocorrect(input);
+                console.log("No reviews could be found. Did you mean " + result);
+                res.send("No reviews could be found. Did you mean " + result);
+            }
         });
         console.log("after find");
       
