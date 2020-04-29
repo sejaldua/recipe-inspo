@@ -14,7 +14,9 @@
         margin-right: auto;
     }
     #review-list {
-      background-color: 
+      background-color: rgba(189, 251, 255, .4);
+      border: .1vmin inset black;
+      
     }
 
   </style>
@@ -57,7 +59,7 @@
         {
           var text = "";
           for (let i = 0; i < result.length; i++) {
-            text += +  "<STRONG> Submitted By: </STRONG>" + result[i].user + "<br>"
+            text += "<STRONG> Submitted By: </STRONG>" + result[i].user + "<br>"
                  +  "<STRONG> Recipe: </STRONG>" + result[i].dish + "<br>" 
                  +  "<STRONG> Review: </STRONG>" + result[i].review + "<br> <br>";
           }
