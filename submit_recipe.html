@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Submit a Recipe</title>
+	<title>Submit a Review</title>
     <meta charset="utf-8"/>
     <link href="style.css" rel="stylesheet">
   <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -44,87 +44,27 @@
 					<li><a href="index.html">Explore Recipes</a></li>
 				</div>
 				<div class="floatright">
-					<li><a href="submit_recipe.html">Submit a Recipe</a></li>
+					<li><a href="submit_recipe.html">Submit a Review</a></li>
+					<li><a href="search-reviews.html">Recipe Reviews</a></li>
 					<li><a href="aboutus.html">About Us</a></li>
 				</div>
 			</div>
 		</ul>
 	</nav>
-<!-- String-Parsing Code -->
-<!-- <script language="javascript">
 
-    /* Function get_recipe
-     * Parameters: none
-     * Operations: Gets the recipe from the user's input
-     */
-    function get_recipe()
-    {
-        var recipe_name = document.getElementsByName("name")[0].value;
-        var description = document.getElementsByName("description")[0].value;
-        var ingredients = document.getElementsByName("ingredients")[0].value;
-        /* Create JSON Object */
-        var recipe_JSON = create_JSON(recipe_name, description, ingredients);
-
-        /* reset the values to nothin */
-        document.getElementsByName("name")[0].value = "";
-        document.getElementsByName("description")[0].value = "";
-        document.getElementsByName("ingredients")[0].value = "";
-    }
-    /* Function create_JSON
-     * Parameters: recipe name, description and ingredients needed
-     * Operations: Creates a JSON Object of the recipe
-     */
-     function create_JSON(recipe_name, description, ingredients)
-     {
-        var ingredients_array = parse_ingredients(ingredients);
-        /* now create JSON object with the recipe information */
-        var recipe_text = '{ "name":"' + recipe_name + '", "description":"' + description + '", "ingredients":[ ';
-        for (let i = 0; i < ingredients_array.length; i++) {
-            recipe_text += '"';
-            recipe_text += ingredients_array[i];
-            recipe_text += '"';
-            if (i != ingredients_array.length - 1)
-                recipe_text += ', ';
-        }
-        recipe_text += ' ] }';
-        alert(recipe_text);
-        var recipe_JSON = JSON.parse(recipe_text);
-        return recipe_JSON;
-     }
-
-     /* function parse_ingredients 
-      * Parameters: a list of ingredients 
-      * Operations: parses the list of ingredients 
-      * Returns: An array of all ingredients
-      */
-      function parse_ingredients(ingredients)
-      {
-        /* first remove leading and trailing whitespace */
-        ingredients = ingredients.trim();
-        /* split the string via each comma */
-        var ingredients_array = ingredients.split(",");
-        /* remove leading and trailing whitespace for each ingredient */
-        for (let i = 0; i < ingredients_array.length; i++) {
-            ingredients_array[i] = ingredients_array[i].trim();
-        }
-        return ingredients_array;
-
-      }
-</script> -->
 
 
     <br><br><br>
-	<h1 class="title">Submit a Recipe! </h1><br>
+	<h1 class="title">Submit a Review! </h1><br>
     <div class="wrapper">
         <form method = "post" action = "https://immense-shelf-54929.herokuapp.com/submit">
             <input id="query" name="dish" type="text" placeholder="Dish Name" required><br>
             <input id="query" name="user" type="text" placeholder="Your Name" required><br>
-            <textarea style="padding: 15px 25px" rows="5" cols="60" name="review" id="review" placeholder="Write your review here!"></textarea><br>
+            <textarea style="padding: 15px 25px" rows="5" cols="60" name="review" id="desc" placeholder="Write your review here!"></textarea><br>
             <input type = "submit" id="button" value = "Submit" /><br>
 
         </form>
         <br>
-        <!-- <button id="button" onclick="get_recipe()">Submit Recipe</button> -->
     </div>
 
 </body>
