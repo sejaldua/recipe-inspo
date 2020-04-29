@@ -25,7 +25,7 @@ app.post('/submit', function(req, res) {
  // body-parser automatically parses the json so its easy to grab form elements
     var doc = {
     user: req.body.user,
-    dish: req.body.dish,
+    dish: autocorrect(req.body.dish),
     review: req.body.review,
     }
     console.log(doc);
@@ -52,7 +52,7 @@ app.post('/submit', function(req, res) {
 
 
 app.post('/get', function(req, res) {
-    name = req.body.query;
+    name = req.data;
     console.log("name: " + name);
     
     MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
@@ -65,7 +65,6 @@ app.post('/get', function(req, res) {
         
         var s = coll.find({"dish":name}).stream();
     
-        res.send("recipe found");
         var found = 0;
         s.on("data", function(item) {
             found = 1;
