@@ -3,18 +3,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>See Reviews</title>
+  <title>See Reviews</title>
     <meta charset="utf-8"/>
     <link href="style.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<style> 
+  <style> 
 #submit {
         position: static;
         margin-left: auto;
         margin-right: auto;
     }
-	</style>
-    <script>
+    #review-list {
+      background-color: rgba(189, 251, 255, .4);
+      border: .1vmin inset black;
+      word-wrap: break-word;
+      padding:2vmin;
+      width:34vw;
+      display:none;
+      
+    }
+
+  </style>
+    <script>    
         $(document).ready(function(){
 
             $("form").submit(function (event) {
@@ -30,13 +40,42 @@
               }).then(function (response) {
                 // Do stuff with the response, like add it to the page dynamically.
                 console.log(response);
-              //  $('body').append(response);
-		      alert(response[0].review);
+                print_reviews(response);
+               // $('body').append(response);
               }).catch(function (err) {
                 console.error(err);
               });
             });
         });
+        function print_reviews(result)
+        {
+          if (typeof result == "string"){
+            print_string(result);
+          } else {
+            print_array(result);
+          }
+        }
+        function print_string(result) 
+        {
+          result += "?";
+          var elem = document.getElementById('review-list');
+          elem.style.display = "block";
+          elem.innerHTML = result;
+        }
+        function print_array(result)
+        {
+          var text = "";
+          for (let i = 0; i < result.length; i++) {
+            text += "<STRONG> Submitted By: </STRONG>" + result[i].user + "<br>"
+                 +  "<STRONG> Recipe: </STRONG>" + result[i].dish + "<br>" 
+                 +  "<STRONG> Review: </STRONG>" + result[i].review + "<br> <br>";
+          }
+          var elem = document.getElementById('review-list');
+          elem.style.display = "block";
+          elem.innerHTML = text;
+          
+        }
+     
     </script>
     
     <!-- <script>
@@ -51,23 +90,23 @@
 </head>
 
 <body id="body">
-	<nav>
-		<ul>
-			<div class="nav-container">
-				<div class="floatleft">
-					<li><a href="index.html">Explore Recipes</a></li>
-				</div>
-				<div class="floatright">
-					<li><a href="submit_recipe.html">Submit a Review</a></li>
-                    			<li><a href="search_reviews.html">Recipe Reviews</a></li>
-					<li><a href="aboutus.html">About Us</a></li>
-				</div>
-			</div>
-		</ul>
-	</nav>
-	<br><br><br>
+  <nav>
+    <ul>
+      <div class="nav-container">
+        <div class="floatleft">
+          <li><a href="index.html">Explore Recipes</a></li>
+        </div>
+        <div class="floatright">
+          <li><a href="submit_recipe.html">Submit a Review</a></li>
+                          <li><a href="search_reviews.html">Recipe Reviews</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+        </div>
+      </div>
+    </ul>
+  </nav>
+  <br><br><br>
     <h1 class="title">See Recipe Reviews</h1>
-	<br>
+  <br>
     <div class="wrapper">
         <form> 
             <input id="query" name="query" type="text" placeholder="Enter a recipe name (Case Sensitive)" required>
@@ -75,9 +114,8 @@
         </form>
         
 
-     <div class="review-list"></div>
+     <p id="review-list" style="text-align:left"></p>
     </div>
-
 
 </body>
 </html>
