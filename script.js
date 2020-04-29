@@ -194,7 +194,7 @@ function listenClick(meals, ids) {
     
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-        if (event.target.className === "modal" || event.target.id == "body") {
+        if (event.target.className != "modal-content" && event.target.className != "button") {
             this.document.getElementById("modal").style.display = "none";
         }
     }
