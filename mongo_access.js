@@ -65,7 +65,7 @@ app.post('/get', function(req, res) {
         
         var s = coll.find({"dish":name}).toArray();
         console.log(s);
-        
+        res.send("recipe found");
         // var found = 0;
         // s.on("data", function(item) {
         //     found = 1;
