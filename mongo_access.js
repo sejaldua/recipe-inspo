@@ -14,6 +14,8 @@ var autocorrect = require('autocorrect')({dictionary: path});
 
 var bodyParser = require('body-parser');
 
+var cors = require('cors');
+app.use(cors());
 //Note that in version 4 of express, express.bodyParser() was
 //deprecated in favor of a separate 'body-parser' module.
 app.use(bodyParser.urlencoded({ extended: true })); 
