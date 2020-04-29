@@ -87,12 +87,14 @@ app.post('/get', function(req, res) {
             console.log("end of data");
             db.close();
             console.log(items);
-            res.send(items);
+            console.log("found: " + found);
+            
             if(found == 0){
                 result = autocorrect(input);
                 console.log("No reviews could be found. Did you mean " + result);
                 res.send("No reviews could be found. Did you mean " + result);
             }
+            else{res.send(items);}
         });
         console.log("after find");
       

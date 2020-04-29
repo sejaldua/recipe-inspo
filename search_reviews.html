@@ -29,6 +29,7 @@
                 method: 'POST'
               }).then(function (response) {
                 // Do stuff with the response, like add it to the page dynamically.
+                console.log(response);
                 $('body').append(response);
               }).catch(function (err) {
                 console.error(err);
