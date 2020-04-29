@@ -55,7 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             s += "</tr>";
                         i += 1;
                     }
-                    s += "</table";             
+                    s += "</table";            
+                    // console.log(allMeals); 
                     document.getElementById("results").innerHTML = s;
                     listenClick(allMeals, ids);
                 }
