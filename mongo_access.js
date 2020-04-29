@@ -90,7 +90,7 @@ app.post('/get', function(req, res) {
             console.log("found: " + found);
             
             if(found == 0){
-                result = autocorrect(input);
+                result = autocorrect(name);
                 console.log("No reviews could be found. Did you mean " + result);
                 res.send("No reviews could be found. Did you mean " + result);
             }
