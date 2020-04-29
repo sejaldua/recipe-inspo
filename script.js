@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             s += "<th style='background-color:#B6DCF6' class='button' id=" + i + ">" + data[x].strMeal + "</th>";
                         
                         if ((i+1) % 3 != 0)
-                            s += "<th><img class='button' id=" + i + " src='" + data[x].strMealThumb + "' width='100' height='100' style='padding: 0px 5px 0px 0px;'></img></th>";
+                            s += "<th><img class='button' id=" + i + " src='" + data[x].strMealThumb + "' width='100' height='100' style='padding: 0px 10px 0px 0px;'></img></th>";
                         else
                             s += "<th><img class='button' id=" + i + " src='" + data[x].strMealThumb + "' width='100' height='100'></img></th>";
                         if (i == entries - 1)
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function generate() {
         q = document.getElementById("query").value;
-        setTimeout(clear, 1000);
+        // setTimeout(clear, 1000);
         console.log("before");
         requestData(q);
         console.log("after");
