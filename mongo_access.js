@@ -75,11 +75,11 @@ app.post('/get', function(req, res) {
         s.on("end", function() {
             console.log("end of data");
             db.close();
-            if(found == 0){
-                result = autocorrect(input);
-                console.log("No reviews could be found. Did you mean " + result);
-                res.send("No reviews could be found. Did you mean " + result);
-            }
+            // if(found == 0){
+            //     result = autocorrect(input);
+            //     console.log("No reviews could be found. Did you mean " + result);
+            //     res.send("No reviews could be found. Did you mean " + result);
+            // }
         });
         console.log("after find");
       
