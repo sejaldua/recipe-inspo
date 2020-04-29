@@ -16,12 +16,13 @@ var bodyParser = require('body-parser');
 
 var cors = require('cors');
 
+
 app.use(function(req,res,next){
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers','Content-Type');
     next();
-};
+});
 
 //Note that in version 4 of express, express.bodyParser() was
 //deprecated in favor of a separate 'body-parser' module.
