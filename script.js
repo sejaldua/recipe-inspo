@@ -134,7 +134,7 @@ function requestRecipe(q) {
             var data = JSON.parse(request.responseText).meals[0];
             var s = data.strInstructions;
             console.log(data.strYoutube);          
-            s += "<br><table class='ingredients' style='margin: auto'>";
+            s += "<br><br><table class='ingredients' style='margin: auto'>";
             i = 1;
             s += "<tr style='font-family: Helvetica, sans-serif;'>";
             s += "<th><b>INGREDIENTS</b></th>";
