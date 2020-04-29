@@ -54,6 +54,7 @@ app.post('/submit', function(req, res) {
 
 
 app.post('/get', function(req, res) {
+    console.log(req);
     var name = req.data;
     console.log("name: " + name);
     

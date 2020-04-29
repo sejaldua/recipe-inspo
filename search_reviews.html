@@ -13,11 +13,11 @@
             $("form").submit(function (event) {
               event.preventDefault(); // Stop the form from causing a page refresh.
               var x = $("form").serializeArray();
-              alert(x[0].value);
-              console.log(x[0]);
+              food = x[0].value;
+              console.log(food);
               $.ajax({
                 url: "https://immense-shelf-54929.herokuapp.com/get",
-                data: x[0].value,
+                data: food,
                 method: 'POST'
               }).then(function (response) {
                 // Do stuff with the response, like add it to the page dynamically.
