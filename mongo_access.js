@@ -62,8 +62,8 @@ app.post('/submit', function(req, res) {
 
 
 app.post('/get', function(req, res) {
-    console.log(req.query);
-    var name = req.query;
+    console.log(req.body);
+    var name = req.body;
     console.log("name: " + name);
     
     MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
