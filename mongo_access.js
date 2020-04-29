@@ -91,8 +91,8 @@ app.post('/get', function(req, res) {
             
             if(found == 0){
                 result = autocorrect(name);
-                console.log("No reviews could be found. Did you mean " + result);
-                res.send("No reviews could be found. Did you mean " + result);
+                console.log("Autocorrect: " + result);
+                res.send(result);
             }
             else{res.send(items);}
         });
