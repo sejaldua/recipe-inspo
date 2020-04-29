@@ -52,7 +52,7 @@ app.post('/submit', function(req, res) {
 
 
 app.post('/get', function(req, res) {
-    var name = req.query.query;
+    var name = req.data;
     console.log("name: " + name);
     
     MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
