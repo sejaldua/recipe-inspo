@@ -15,8 +15,6 @@ var autocorrect = require('autocorrect')({dictionary: path});
 var bodyParser = require('body-parser');
 
 var cors = require('cors');
-
-
 app.use(function(req,res,next){
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -63,7 +61,7 @@ app.post('/submit', function(req, res) {
 
 app.post('/get', function(req, res) {
     console.log(req);
-    var name = req.body.query;
+    var name = req.body;
     console.log("name: " + name);
     
     MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
