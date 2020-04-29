@@ -74,7 +74,7 @@ app.post('/get', function(req, res) {
         console.log("before find");
         
         var s = coll.find({"dish":name}).stream();
-        var items = {};
+        var items = [];
         var found = 0;
         s.on("data", function(item) {
             found = 1;
