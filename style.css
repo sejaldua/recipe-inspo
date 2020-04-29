@@ -73,7 +73,7 @@ div {
 }
 
 
-#button {
+#submit {
     position: absolute;
     top: 0;
     right: 0;
@@ -86,7 +86,7 @@ div {
     font-size: 14px;
 }
 
-#button:hover {
+#submit:hover {
     cursor: pointer;
     background-color: rgb(164, 210, 240);
 }
@@ -104,6 +104,11 @@ table {
 tr {
     margin-bottom: 0px;
     padding-bottom: 0px;
+}
+
+th.button {
+    padding-right: 0px;
+    min-width: 115px;
 }
 
 .title {
