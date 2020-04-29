@@ -30,7 +30,8 @@
               }).then(function (response) {
                 // Do stuff with the response, like add it to the page dynamically.
                 console.log(response);
-                $('body').append(response);
+              //  $('body').append(response);
+		      alert(response[0].review);
               }).catch(function (err) {
                 console.error(err);
               });
