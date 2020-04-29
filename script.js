@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // default search query
-    var q = "chicken";
+    var q = "";
     var state = 0;
     var request;
     requestData(q);
