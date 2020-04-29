@@ -28,10 +28,12 @@
     <h1 class="title">See Recipe Reviews</h1>
 	<br>
     <div class="wrapper">
-        <form id="query-form"  action="https://immense-shelf-54929.herokuapp.com/myaction"> <!-- action goes to heroku app -->
+        <form method = "post" action = "https://immense-shelf-54929.herokuapp.com/get"> <!-- action goes to heroku app -->
             <input id="query" name="query" type="text" placeholder="Enter a recipe name (Case Sensitive)" required>
+            <input type = "submit" id="button" value = "See Reviews" /><br>
         </form>
-        <button id="button">See All Reviews</button>
+        
+
      <div class="review-list"></div>
     </div>
 

@@ -63,25 +63,25 @@ app.post('/get', function(req, res) {
           
         console.log("before find");
         
-        var s = coll.find({"dish":name}).toArray();
-        console.log(s);
+        var s = coll.find({"dish":name}).stream();
+    
         res.send("recipe found");
-        // var found = 0;
-        // s.on("data", function(item) {
-        //     found = 1;
-        //     console.log(item);
-        //     res.send("Review for " + item.dish + ": " + item.review + " - " + item.user);
-        // });
+        var found = 0;
+        s.on("data", function(item) {
+            found = 1;
+            console.log(item);
+            res.send("Review for " + item.dish + ": " + item.review + " - " + item.user);
+        });
            
-        // s.on("end", function() {
-        //     console.log("end of data");
-        //     db.close();
-        //     if(found == 0){
-        //         result = autocorrect(input);
-        //         console.log("No reviews could be found. Did you mean " + result);
-        //         res.send("No reviews could be found. Did you mean " + result);
-        //     }
-        // });
+        s.on("end", function() {
+            console.log("end of data");
+            db.close();
+            if(found == 0){
+                result = autocorrect(input);
+                console.log("No reviews could be found. Did you mean " + result);
+                res.send("No reviews could be found. Did you mean " + result);
+            }
+        });
         console.log("after find");
       
     }); 
