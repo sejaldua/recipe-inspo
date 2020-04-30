@@ -11,9 +11,16 @@ html {
 }
 
 body {
-    width: 100%;
-/*     margin: auto;
-    font-size: 14px; */
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+.bodycontent {
+    min-height: 100vh;
+    margin-bottom: -250px;
+}
+.footer, .push {
+    height: 250px;
 }
 
 .title {
@@ -237,17 +244,19 @@ a {
  	display: flex;
  }
  footer {
-    background-color: #438CA8;
+    background-color: #065A82;
     border: solid;
-    border-color: #438CA8;
+    border-color: #065A82;
     width: 100vw;
     display: flex;
     color: white;
     padding: none;
+	 height: 250px;
 
 }
 .Mentions{
     width: 60vw;
+	margin-left: 20px;
 
 }
 .Social-Media {
