@@ -236,3 +236,25 @@ a {
  .aboutcontent {
  	display: flex;
  }
+ footer {
+    background-color: #438CA8;
+    border: solid;
+    border-color: #438CA8;
+    width: 100vw;
+    display: flex;
+    color: white;
+    padding: none;
+    position: absolute;
+    bottom:0;
+
+}
+.Mentions{
+    width: 60vw;
+
+}
+.Social-Media {
+    width: 40vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
