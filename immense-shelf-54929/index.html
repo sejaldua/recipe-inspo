@@ -1,0 +1,51 @@
+  
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Explore Recipes</title>
+    <meta charset="utf-8"/>
+    <link href="style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body id="body">
+	<nav>
+		<ul>
+			<div class="nav-container">
+				<div class="floatleft">
+					<li><a href="index.html">Explore Recipes</a></li>
+				</div>
+				<div class="floatright">
+					<li><a href="submit_recipe.html">Submit a Review</a></li>
+					<li><a href="search-reviews.html">Recipe Reviews</a></li>
+					<li><a href="aboutus.html">About Us</a></li>
+				</div>
+			</div>
+		</ul>
+	</nav>
+	<br><br><br>
+    <h1 class="title">Meal Inspiration</h1>
+	<br>
+    <div class="wrapper">
+        <form id="query-form">
+            <input id="query" name="query" type="text" placeholder="Enter an ingredient" required>
+        </form>
+        <button id="submit">Get Ideas</button>
+        <div class id="results"></div>
+        <div id="blooock">
+            <div class='modal' id='modal'>
+                <div class='modal-content' id='modal-content'>
+                    <span class='close' id='close'>&times;</span>
+                    <p id='meal-name'></p>;
+                    <div id='recipe'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

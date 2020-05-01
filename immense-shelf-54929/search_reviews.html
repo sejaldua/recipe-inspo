@@ -1,0 +1,82 @@
+  <!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>See Reviews</title>
+    <meta charset="utf-8"/>
+    <link href="style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style> 
+#submit {
+        position: static;
+        margin-left: auto;
+        margin-right: auto;
+    }
+	</style>
+    <script>
+        $(document).ready(function(){
+
+            $("form").submit(function (event) {
+              event.preventDefault(); // Stop the form from causing a page refresh.
+              var x = $("form").serializeArray();
+              food = x[0].value;
+
+              console.log(x[0]);
+              $.ajax({
+                url: "https://immense-shelf-54929.herokuapp.com/get",
+                data: {str:x[0].value},
+                method: 'POST'
+              }).then(function (response) {
+                // Do stuff with the response, like add it to the page dynamically.
+                console.log(response);
+                $('body').append(response);
+              }).catch(function (err) {
+                console.error(err);
+              });
+            });
+        });
+    </script>
+    
+    <!-- <script>
+    $(document).ready(function(){
+      $("form").submit(function(event){
+        event.preventDefault();
+        alert("Submit prevented");
+      });
+    });
+    </script> -->
+
+</head>
+
+<body id="body">
+	<nav>
+		<ul>
+			<div class="nav-container">
+				<div class="floatleft">
+					<li><a href="index.html">Explore Recipes</a></li>
+				</div>
+				<div class="floatright">
+					<li><a href="submit_recipe.html">Submit a Review</a></li>
+                    			<li><a href="search_reviews.html">Recipe Reviews</a></li>
+					<li><a href="aboutus.html">About Us</a></li>
+				</div>
+			</div>
+		</ul>
+	</nav>
+	<br><br><br>
+    <h1 class="title">See Recipe Reviews</h1>
+	<br>
+    <div class="wrapper">
+        <form> 
+            <input id="query" name="query" type="text" placeholder="Enter a recipe name (Case Sensitive)" required>
+            <input type = "submit" id="submit" value = "See Reviews" /><br>
+        </form>
+        
+
+     <div class="review-list"></div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Submit a Review</title>
+    <meta charset="utf-8"/>
+    <link href="style.css" rel="stylesheet">
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script> -->
+</head>`
+<style> 
+    body {
+
+    }
+    #submit {
+        position: static;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #desc {
+    height: 30vh;
+    width: 100%;
+    display: block;
+    padding-left:3vw;
+    padding-right:3vw;
+    padding-top:2vh;
+    padding-bottom:2vh;
+    border: 1px solid #ccc;
+    font-family: "Helvetica", sans-serif; 
+    font-size: 1em;
+}
+
+#desc:focus {
+    outline: none;
+    border: 1px solid rgb(164, 210, 240);
+}
+</style>
+<body>
+	<nav>
+		<ul>
+			<div class="nav-container">
+				<div class="floatleft">
+					<li><a href="index.html">Explore Recipes</a></li>
+				</div>
+				<div class="floatright">
+					<li><a href="submit_recipe.html">Submit a Review</a></li>
+					<li><a href="search_reviews.html">Recipe Reviews</a></li>
+					<li><a href="aboutus.html">About Us</a></li>
+				</div>
+			</div>
+		</ul>
+	</nav>
+
+
+
+    <br><br><br>
+	<h1 class="title">Submit a Review! </h1><br>
+    <div class="wrapper">
+        <form method = "post" action = "https://immense-shelf-54929.herokuapp.com/submit">
+            <input id="query" name="dish" type="text" placeholder="Dish Name" required><br>
+            <input id="query" name="user" type="text" placeholder="Your Name" required><br>
+            <textarea style="padding: 15px 25px" rows="5" cols="60" name="review" id="desc" placeholder="Write your review here!"></textarea><br>
+            <input type = "submit" id="submit" value = "Submit" /><br>
+
+        </form>
+        <br>
+    </div>
+
+</body>
+</html>
