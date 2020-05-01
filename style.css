@@ -17,10 +17,10 @@ body {
 }
 .bodycontent {
     min-height: 100vh;
-    margin-bottom: -250px;
+    margin-bottom: -150px;
 }
 .footer, .push {
-    height: 250px;
+    height: 150px;
 }
 
 .title {
@@ -251,8 +251,7 @@ a {
     display: flex;
     color: white;
     padding: none;
-	 height: 250px;
-
+    height: 150px;
 }
 .Mentions{
     width: 60vw;
